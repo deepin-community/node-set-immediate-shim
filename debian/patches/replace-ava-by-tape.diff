@@ -1,0 +1,28 @@
+Description: replace ava by tape in test
+Author: Xavier Guimard <yadd@debian.org>
+Forwarded: not-needed
+Last-Update: 2020-05-28
+
+--- a/test.js
++++ b/test.js
+@@ -1,8 +1,8 @@
+ /* eslint-disable no-global-assign, no-native-reassign */
+-import test from 'ava';
+-import importFresh from 'import-fresh';
++const test = require('tape');
++const importFresh = require('import-fresh');
+ 
+-test.cb('shim', t => {
++test('shim', t => {
+ 	let called = false;
+ 
+ 	// Force the shim
+@@ -19,7 +19,7 @@
+ 	t.false(called);
+ });
+ 
+-test.cb('pass rest arguments', t => {
++test('pass rest arguments', t => {
+ 	// Force the shim
+ 	const _ = setImmediate;
+ 	setImmediate = null;
